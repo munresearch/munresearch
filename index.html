@@ -7,7 +7,9 @@
   <title>MUN Research</title>
 </head>
 <body>
-  <h1>MUN Research</h1>
+  <header class="bg-dark">
+    <h1>MUN Research</h1>
+  </header>
   <form class="form-inline my-2 my-lg-0" action="/searchagenda" method="post">
     <input class="form-control mr-sm-2" aria-label="Enter your agenda" type="text" id="promptagenda" name="promptagenda"><br>
     <input class="btn btn-outline-success my-2 my-sm-0" type="submit" value="Submit">
@@ -64,6 +66,7 @@
         document.getElementById("result6").innerHTML = '<a href="'+ response.items[5].link + '">"'+ response.items[5].title + '"</a>';
       }
     }
+
     // Add an event listener to the form's submit button
     var form = document.querySelector("form");
     form.addEventListener("submit", function(event) {
@@ -77,6 +80,17 @@
       height: calc(100vh - 80px);  /* 80px is the height of the footer */
       overflow: auto;
     }
+
+    header {
+      text-align: center; /* Center the content */
+      color: white; /* Set the text color */
+      padding: 20px; /* Add some padding */
+    }
+    header h1 {
+      font-size: 36px; /* Set the font size */
+      font-weight: bold; /* Make the font bold */
+    }
+
     footer {
       position: absolute;
       bottom: 0;
@@ -85,6 +99,5 @@
       margin: 0;
       padding: 0;
     }
-
   </style>
 </html>
