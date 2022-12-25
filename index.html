@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Search Results</title>
+</head>
+<body>
+  <h1>Search Results</h1>
+  <form action="/search" method="post">
+    <label for="prompt">Enter search prompt:</label><br>
+    <input type="text" id="prompt" name="prompt"><br>
+    <input type="submit" value="Submit">
+  </form> 
+  <table>
+    <tr>
+      <th>Result 1</th>
+      <th>Result 2</th>
+      <th>Result 3</th>
+      <th>Result 4</th>
+      <th>Result 5</th>
+      <th>Result 6</th>
+    </tr>
+    <tr>
+      <td id="result1"></td>
+      <td id="result2"></td>
+      <td id="result3"></td>
+      <td id="result4"></td>
+      <td id="result5"></td>
+      <td id="result6"></td>
+    </tr>
+  </table>
+  <script>
+    function search() {
+      // Get the search prompt from the form
+      var prompt = document.getElementById("prompt").value;
+
+      // Using the Google Search API to get search results, this key fetches results from Google Scholar
+      var url = "https://www.googleapis.com/customsearch/v1?key=AIzaSyD_2AzYp5WRBLkVxoAdPV8r9XBxrtsOe5w&cx=146c71ac6b2fe4aa7&q=" + prompt;
+      var xhr = new XMLHttpRequest();
+      xhr.open("GET", url);
+      xhr.send();
+      xhr.onload = function() {
+        var response = JSON.parse(xhr.response);
+        // Update the table with the search results
+        document.getElementById("result1").innerHTML = response.items[0].title;
+        document.getElementById("result2").innerHTML = response.items[1].title;
+        document.getElementById("result3").innerHTML = response.items[2].title;
+        document.getElementById("result4").innerHTML = response.items[3].title;
+        document.getElementById("result5").innerHTML = response.items[4].title;
+        document.getElementById("result6").innerHTML = response.items[5].title;
+      }
+    }
+    // Add an event listener to the form's submit button
+    var form = document.querySelector("form");
+    form.addEventListener("submit", function(event) {
+      event.preventDefault();
+      search();
+    });
+  </script>
+</body>
+</html>
