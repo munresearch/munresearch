@@ -11,7 +11,10 @@
     <h1>MUN Research</h1>
   </header>
   <form class="form-inline my-2 my-lg-0" action="/searchagenda" method="post" style="margin: 25px 0 0 25px">
+    <label for="promptagenda" style="margin: 0 10px 0 0">Enter your agenda:</label><br>
     <input class="form-control mr-sm-2" aria-label="Enter your agenda" type="text" id="promptagenda" name="promptagenda"><br>
+    <label for="promptcountry" style="margin: 0 10px 0 0">Enter your country:</label><br>
+    <input class="form-control mr-sm-2" aria-label="Enter your cCountry" type="text" id="promptcountry" name="promptcountry"><br>
     <input class="btn btn-outline-success my-2 my-sm-0" type="submit" value="Submit">
   </form>
 
@@ -74,11 +77,17 @@
       }
     }
 
+    function searchcountry() {
+      // Get the search prompt from the form
+      var promptcountry = document.getElementById("promptcountry").value;
+    }
+
     // Add an event listener to the form's submit button
     var form = document.querySelector("form");
     form.addEventListener("submit", function(event) {
       event.preventDefault();
       searchagenda();
+      searchcountry();
     });
   </script>
 
