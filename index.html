@@ -6,8 +6,8 @@
 <body>
   <h1>Search Results</h1>
   <form action="/search" method="post">
-    <label for="prompt">Enter search prompt:</label><br>
-    <input type="text" id="prompt" name="prompt"><br>
+    <label for="promptagenda">Enter your agenda:</label><br>
+    <input type="text" id="promptagenda" name="promptagenda"><br>
     <input type="submit" value="Submit">
   </form> 
   <table>
@@ -31,10 +31,10 @@
   <script>
     function search() {
       // Get the search prompt from the form
-      var prompt = document.getElementById("prompt").value;
+      var promptagenda = document.getElementById("promptagenda").value;
 
       // Using the Google Search API to get search results, this key fetches results from Google Scholar
-      var url = "https://www.googleapis.com/customsearch/v1?key=AIzaSyD_2AzYp5WRBLkVxoAdPV8r9XBxrtsOe5w&cx=146c71ac6b2fe4aa7&q=" + prompt;
+      var url = "https://www.googleapis.com/customsearch/v1?key=AIzaSyD_2AzYp5WRBLkVxoAdPV8r9XBxrtsOe5w&cx=146c71ac6b2fe4aa7&q=" + promptagenda;
       var xhr = new XMLHttpRequest();
       xhr.open("GET", url);
       xhr.send();
