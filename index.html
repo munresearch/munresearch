@@ -1,3 +1,6 @@
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,12 +8,12 @@
 </head>
 <body>
   <h1>Search Results</h1>
-  <form action="/searchagenda" method="post">
-    <label for="promptagenda">Enter your agenda:</label><br>
-    <input type="text" id="promptagenda" name="promptagenda"><br>
-    <input type="submit" value="Submit">
+  <form class="form-inline my-2 my-lg-0" action="/searchagenda" method="post">
+    <input class="form-control mr-sm-2" aria-label="Enter your agenda" type="text" id="promptagenda" name="promptagenda"><br>
+    <input class="btn btn-outline-success my-2 my-sm-0" type="submit" value="Submit">
   </form> 
-  <table>
+  <table class="table">
+   <thead>
     <tr>
       <th>Result 1</th>
       <th>Result 2</th>
@@ -19,6 +22,8 @@
       <th>Result 5</th>
       <th>Result 6</th>
     </tr>
+   </thead>
+   <tbody>
     <tr>
       <td id="result1"></td>
       <td id="result2"></td>
@@ -27,6 +32,7 @@
       <td id="result5"></td>
       <td id="result6"></td>
     </tr>
+   </tbody>
   </table>
   <script>
     function searchagenda() {
