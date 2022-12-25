@@ -7,16 +7,18 @@
   <title>MUN Research</title>
 </head>
 <body>
-  <header id="header" class="bg-dark" style="margin: 0 0 10px 0">
+  <header id="header" class="bg-dark" style="margin: 0 0 25px 0">
     <h1>MUN Research</h1>
   </header>
-  <form class="form-inline my-2 my-lg-0" action="/searchagenda" method="post" style="margin: 10px 0 0 10px">
+  <form class="form-inline my-2 my-lg-0" action="/searchagenda" method="post" style="margin: 25px 0 0 25px">
     <input class="form-control mr-sm-2" aria-label="Enter your agenda" type="text" id="promptagenda" name="promptagenda"><br>
     <input class="btn btn-outline-success my-2 my-sm-0" type="submit" value="Submit">
   </form>
 
-  <h3 style="margin-left: 10px">Research Papers</h3>
-  <table class="table" style="margin: 0 -10px 0 10px">
+  <h3 style="margin: 25px 0 5px 25px">Research Papers</h3>
+  <div> 
+  <div style="margin: 0 25px 0 25px">
+  <table class="table">
    <thead>
     <tr>
       <th>Paper 1</th>
@@ -38,6 +40,8 @@
     </tr>
    </tbody>
   </table>
+  </div>
+  </div>
 
   <footer id="footer" class="bg-dark py-3">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark container">
@@ -83,12 +87,20 @@
       height: calc(100vh - 80px);  /* 80px is the height of the footer */
       overflow: auto;
     }
-
     header {
       text-align: center; /* Center the content */
       color: white; /* Set the text color */
       padding: 20px; /* Add some padding */
     }
+    html,body
+    {
+      width: 100%;
+      height: 100%;
+      margin: 0px;
+      padding: 0px;
+      overflow-x: hidden; 
+    }
+
     header h1 {
       font-size: 36px; /* Set the font size */
       font-weight: bold; /* Make the font bold */
