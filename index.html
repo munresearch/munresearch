@@ -5,7 +5,7 @@
 </head>
 <body>
   <h1>Search Results</h1>
-  <form action="/search" method="post">
+  <form action="/searchagenda" method="post">
     <label for="promptagenda">Enter your agenda:</label><br>
     <input type="text" id="promptagenda" name="promptagenda"><br>
     <input type="submit" value="Submit">
@@ -29,7 +29,7 @@
     </tr>
   </table>
   <script>
-    function search() {
+    function searchagenda() {
       // Get the search prompt from the form
       var promptagenda = document.getElementById("promptagenda").value;
 
@@ -53,7 +53,7 @@
     var form = document.querySelector("form");
     form.addEventListener("submit", function(event) {
       event.preventDefault();
-      search();
+      searchagenda();
     });
   </script>
 </body>
