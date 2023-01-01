@@ -111,7 +111,7 @@
       const isoCode = isoCodeMap.get(toTitleCase(promptcountry));
       if (isoCode) {
         // Make a GET request to the World Bank API using the ISO 2-letter code
-        const worldBankUrl = "http://api.worldbank.org/v2/country/" + isoCode.toLowerCase() + "?format=json";
+        const worldBankUrl = "https://api.worldbank.org/v2/country/" + isoCode.toLowerCase() + "?format=json";
         const response = await fetch(worldBankUrl);
         const data = await response.json();
 
