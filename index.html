@@ -111,37 +111,29 @@
       const promptagenda = document.getElementById("promptagenda").value;
       const promptcountry = document.getElementById("promptcountry").value;
 
-      // Using the Google Search API to get search results, this key fetches results from Google Scholar
-      var url = "https://www.googleapis.com/customsearch/v1?key=AIzaSyD_2AzYp5WRBLkVxoAdPV8r9XBxrtsOe5w&cx=146c71ac6b2fe4aa7&q=" + promptagenda;
-      var xhr = new XMLHttpRequest();
-      xhr.open("GET", url);
-      xhr.send();
-      xhr.onload = function() {
-        var response = JSON.parse(xhr.response);
-        // Update the table with the search results
-        document.getElementById("result1").innerHTML = '<a href="'+ response.items[0].link + '">"'+ response.items[0].title + '"</a>';
-        document.getElementById("result2").innerHTML = '<a href="'+ response.items[1].link + '">"'+ response.items[1].title + '"</a>';
-        document.getElementById("result3").innerHTML = '<a href="'+ response.items[2].link + '">"'+ response.items[2].title + '"</a>';
-        document.getElementById("result4").innerHTML = '<a href="'+ response.items[3].link + '">"'+ response.items[3].title + '"</a>';
-        document.getElementById("result5").innerHTML = '<a href="'+ response.items[4].link + '">"'+ response.items[4].title + '"</a>';
-        document.getElementById("result6").innerHTML = '<a href="'+ response.items[5].link + '">"'+ response.items[5].title + '"</a>';
-      }
+      // Using the Google Search API to get search results, this key fetches results from core uk
+      const scholarUrl = `https://www.googleapis.com/customsearch/v1?key=AIzaSyD_2AzYp5WRBLkVxoAdPV8r9XBxrtsOe5w&cx=146c71ac6b2fe4aa7&q=${promptagenda}`;
+      const scholarResponse = await fetch(scholarUrl);
+      const scholarData = await scholarResponse.json();
+      // Update the table with the search results
+      document.getElementById("result1").innerHTML = `<a href="${scholarData.items[0].link}">"${scholarData.items[0].title}"</a>`;
+      document.getElementById("result2").innerHTML = `<a href="${scholarData.items[1].link}">"${scholarData.items[1].title}"</a>`;
+      document.getElementById("result3").innerHTML = `<a href="${scholarData.items[2].link}">"${scholarData.items[2].title}"</a>`;
+      document.getElementById("result4").innerHTML = `<a href="${scholarData.items[3].link}">"${scholarData.items[3].title}"</a>`;
+      document.getElementById("result5").innerHTML = `<a href="${scholarData.items[4].link}">"${scholarData.items[4].title}"</a>`;
+      document.getElementById("result6").innerHTML = `<a href="${scholarData.items[5].link}">"${scholarData.items[5].title}"</a>`;
 
       // Using the Google Search API to get search results, this key fetches results from associated press
-      var urlnews = "https://www.googleapis.com/customsearch/v1?key=AIzaSyD_2AzYp5WRBLkVxoAdPV8r9XBxrtsOe5w&cx=5443881cd7ea34ccf&q=" + promptagenda;
-      var xhr = new XMLHttpRequest();
-      xhr.open("GET", urlnews);
-      xhr.send();
-      xhr.onload = function() {
-        var response = JSON.parse(xhr.response);
-        // Update the table with the search results
-        document.getElementById("article1").innerHTML = '<a href="'+ response.items[0].link + '">"'+ response.items[0].title + '"</a>';
-        document.getElementById("article2").innerHTML = '<a href="'+ response.items[1].link + '">"'+ response.items[1].title + '"</a>';
-        document.getElementById("article3").innerHTML = '<a href="'+ response.items[2].link + '">"'+ response.items[2].title + '"</a>';
-        document.getElementById("article4").innerHTML = '<a href="'+ response.items[3].link + '">"'+ response.items[3].title + '"</a>';
-        document.getElementById("article5").innerHTML = '<a href="'+ response.items[4].link + '">"'+ response.items[4].title + '"</a>';
-        document.getElementById("article6").innerHTML = '<a href="'+ response.items[5].link + '">"'+ response.items[5].title + '"</a>';
-      }
+      const newsUrl = `https://www.googleapis.com/customsearch/v1?key=AIzaSyD_2AzYp5WRBLkVxoAdPV8r9XBxrtsOe5w&cx=5443881cd7ea34ccf&q=${promptagenda}`;
+      const newsResponse = await fetch(newsUrl);
+      const newsData = await newsResponse.json();
+      // Update the table with the search results
+      document.getElementById("article1").innerHTML = `<a href="${newsData.items[0].link}">"${newsData.items[0].title}"</a>`;
+      document.getElementById("article2").innerHTML = `<a href="${newsData.items[1].link}">"${newsData.items[1].title}"</a>`;
+      document.getElementById("article3").innerHTML = `<a href="${newsData.items[2].link}">"${newsData.items[2].title}"</a>`;
+      document.getElementById("article4").innerHTML = `<a href="${newsData.items[3].link}">"${newsData.items[3].title}"</a>`;
+      document.getElementById("article5").innerHTML = `<a href="${newsData.items[4].link}">"${newsData.items[4].title}"</a>`;
+      document.getElementById("article6").innerHTML = `<a href="${newsData.items[5].link}">"${newsData.items[5].title}"</a>`;
       
       // Fetch country list from datahub.io
       const repondre = await fetch(`https://datahub.io/core/country-list/r/0.json`);
