@@ -18,7 +18,7 @@
     <input class="btn btn-outline-success my-2 my-sm-0" type="submit" value="Submit">
   </form>
 
-  <h3 style="margin: 25px 0 5px 25px">Country Information (information from the World Bank)</h3>
+  <h3 style="margin: 25px 0 5px 25px">Country Information</h3>
   <div>
   <div style="margin: 0 25px 0 25px">
   <table class="table">
@@ -40,8 +40,36 @@
   </div>
   </div>
 
-  <h3 style="margin: 25px 0 5px 25px">Research Papers (sourced from <a href="https://core.ac.uk">core.ac.uk</a>)</h3>
-  <div> 
+  <h3 style="margin: 25px 0 5px 25px">Recent News on the Agenda</h3>
+  <div>
+  <div style="margin: 0 25px 0 25px">
+  <table class="table">
+   <thead>
+    <tr>
+      <th>Article 1</th>
+      <th>Article 2</th>
+      <th>Article 3</th>
+      <th>Article 4</th>
+      <th>Article 5</th>
+      <th>Article 6</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+      <td id="article1"></td>
+      <td id="article2"></td>
+      <td id="article3"></td>
+      <td id="article4"></td>
+      <td id="article5"></td>
+      <td id="article6"></td>
+    </tr>
+   </tbody>
+  </table>
+  </div>
+  </div>
+
+  <h3 style="margin: 25px 0 5px 25px">Research Papers</h3>
+  <div>
   <div style="margin: 0 25px 0 25px">
   <table class="table">
    <thead>
@@ -98,6 +126,22 @@
         document.getElementById("result5").innerHTML = '<a href="'+ response.items[4].link + '">"'+ response.items[4].title + '"</a>';
         document.getElementById("result6").innerHTML = '<a href="'+ response.items[5].link + '">"'+ response.items[5].title + '"</a>';
       }
+
+      // Using the Google Search API to get search results, this key fetches results from associated press
+      var urlnews = "https://www.googleapis.com/customsearch/v1?key=AIzaSyD_2AzYp5WRBLkVxoAdPV8r9XBxrtsOe5w&cx=5443881cd7ea34ccf&q=" + promptagenda;
+      var xhr = new XMLHttpRequest();
+      xhr.open("GET", urlnews);
+      xhr.send();
+      xhr.onload = function() {
+        var response = JSON.parse(xhr.response);
+        // Update the table with the search results
+        document.getElementById("article1").innerHTML = '<a href="'+ response.items[0].link + '">"'+ response.items[0].title + '"</a>';
+        document.getElementById("article2").innerHTML = '<a href="'+ response.items[1].link + '">"'+ response.items[1].title + '"</a>';
+        document.getElementById("article3").innerHTML = '<a href="'+ response.items[2].link + '">"'+ response.items[2].title + '"</a>';
+        document.getElementById("article4").innerHTML = '<a href="'+ response.items[3].link + '">"'+ response.items[3].title + '"</a>';
+        document.getElementById("article5").innerHTML = '<a href="'+ response.items[4].link + '">"'+ response.items[4].title + '"</a>';
+        document.getElementById("article6").innerHTML = '<a href="'+ response.items[5].link + '">"'+ response.items[5].title + '"</a>';
+      }
       
       // Fetch country list from datahub.io
       const repondre = await fetch(`https://datahub.io/core/country-list/r/0.json`);
@@ -145,6 +189,11 @@
       height: calc(100vh - 80px);  /* 80px is the height of the footer */
       overflow: auto;
     }
+    .clearfix::after {
+      content: "";
+      clear: both;
+      display: table;
+    }
     header {
       text-align: center; /* Center the content */
       color: white; /* Set the text color */
@@ -169,6 +218,7 @@
       bottom: 0;
       height: 80px;
       width: 100%;
+      margin-top: 20px;
       margin: 0;
       padding: 0;
     }
