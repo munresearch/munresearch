@@ -18,7 +18,29 @@
     <input class="btn btn-outline-success my-2 my-sm-0" type="submit" value="Submit">
   </form>
 
-  <h3 style="margin: 25px 0 5px 25px">Research Papers</h3>
+  <h3 style="margin: 25px 0 5px 25px">Country Information (information from the World Bank)</h3>
+  <div>
+  <div style="margin: 0 25px 0 25px">
+  <table class="table">
+   <thead>
+    <tr>
+      <th>Capital</th>
+      <th>Region</th>
+      <th>Economic Status</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+      <td id="capital"></td>
+      <td id="region"></td>
+      <td id="econstatus"></td>
+    </tr>
+   </tbody>
+  </table>
+  </div>
+  </div>
+
+  <h3 style="margin: 25px 0 5px 25px">Research Papers (sourced from <a href="https://core.ac.uk">core.ac.uk</a>)</h3>
   <div> 
   <div style="margin: 0 25px 0 25px">
   <table class="table">
@@ -56,9 +78,10 @@
   </footer>
 
   <script>
-    function searchagenda() {
+    const searchagenda = async () => {
       // Get the search prompt from the form
-      var promptagenda = document.getElementById("promptagenda").value;
+      const promptagenda = document.getElementById("promptagenda").value;
+      const promptcountry = document.getElementById("promptcountry").value;
 
       // Using the Google Search API to get search results, this key fetches results from Google Scholar
       var url = "https://www.googleapis.com/customsearch/v1?key=AIzaSyD_2AzYp5WRBLkVxoAdPV8r9XBxrtsOe5w&cx=146c71ac6b2fe4aa7&q=" + promptagenda;
@@ -75,19 +98,45 @@
         document.getElementById("result5").innerHTML = '<a href="'+ response.items[4].link + '">"'+ response.items[4].title + '"</a>';
         document.getElementById("result6").innerHTML = '<a href="'+ response.items[5].link + '">"'+ response.items[5].title + '"</a>';
       }
+      
+      // Fetch country list from datahub.io
+      const repondre = await fetch(`https://datahub.io/core/country-list/r/0.json`);
+      const dataiso = await repondre.json();
+
+      // Create a map of country names to ISO 2-letter codes
+      const isoCodeMap = new Map();
+      dataiso.forEach((item) => isoCodeMap.set(item.Name, item.Code));
+
+      // Get the ISO 2-letter code for the given country
+      const isoCode = isoCodeMap.get(toTitleCase(promptcountry));
+      if (isoCode) {
+        // Make a GET request to the World Bank API using the ISO 2-letter code
+        const worldBankUrl = "http://api.worldbank.org/v2/country/" + isoCode.toLowerCase() + "?format=json";
+        const response = await fetch(worldBankUrl);
+        const data = await response.json();
+
+        // Retrieve the capital city, region, and income level from the API response
+        const capital = data[1][0].capitalCity;
+        const region = data[1][0].region.value;
+        const incomeLevel = data[1][0].incomeLevel.value;
+
+        // Update the table cells with the retrieved values
+        document.getElementById("capital").innerHTML = capital;
+        document.getElementById("region").innerHTML = region;
+        document.getElementById("econstatus").innerHTML = incomeLevel;
+      } else {
+        console.error("ISO code not found for given country.");
+      }
     }
 
-    function searchcountry() {
-      // Get the search prompt from the form
-      var promptcountry = document.getElementById("promptcountry").value;
+    const toTitleCase = (string) => {
+      return string.split(" ").map((word) => word[0].toUpperCase() + word.substring(1)).join(" ");
     }
-
     // Add an event listener to the form's submit button
     var form = document.querySelector("form");
     form.addEventListener("submit", function(event) {
       event.preventDefault();
       searchagenda();
-      searchcountry();
     });
   </script>
 
