@@ -8,7 +8,11 @@
 </head>
 <body>
   <header id="header" class="bg-dark" style="margin: 0 0 25px 0">
-    <h1>MUN Research</h1>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark container">
+      <ul class="navbar-nav mr-auto">
+          <li><h1>MUN Research</h1></li>
+      </ul>
+    </nav>
   </header>
   <form class="form-inline my-2 my-lg-0" action="/search" method="post" style="margin: 25px 0 0 25px">
     <label for="promptagenda" style="margin: 0 10px 0 0">Enter your agenda:</label><br>
@@ -215,6 +219,7 @@
       event.preventDefault();
       search();
     });
+
   </script>
 
   <style>
