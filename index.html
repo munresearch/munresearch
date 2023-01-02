@@ -10,7 +10,7 @@
   <header id="header" class="bg-dark" style="margin: 0 0 25px 0">
     <h1>MUN Research</h1>
   </header>
-  <form class="form-inline my-2 my-lg-0" action="/searchagenda" method="post" style="margin: 25px 0 0 25px">
+  <form class="form-inline my-2 my-lg-0" action="/search" method="post" style="margin: 25px 0 0 25px">
     <label for="promptagenda" style="margin: 0 10px 0 0">Enter your agenda:</label><br>
     <input class="form-control mr-sm-2" aria-label="Enter your agenda" type="text" id="promptagenda" name="promptagenda"><br>
     <label for="promptcountry" style="margin: 0 10px 0 0">Enter your country:</label><br>
@@ -96,6 +96,34 @@
   </div>
   </div>
 
+  <h3 style="margin: 25px 0 5px 25px">UN Documents and Articles</h3>
+  <div>
+  <div style="margin: 0 25px 0 25px">
+  <table class="table">
+   <thead>
+    <tr>
+      <th>Article 1</th>
+      <th>Article 2</th>
+      <th>Article 3</th>
+      <th>Article 4</th>
+      <th>Article 5</th>
+      <th>Article 6</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+      <td id="doc1"></td>
+      <td id="doc2"></td>
+      <td id="doc3"></td>
+      <td id="doc4"></td>
+      <td id="doc5"></td>
+      <td id="doc6"></td>
+    </tr>
+   </tbody>
+  </table>
+  </div>
+  </div>
+
   <footer id="footer" class="bg-dark py-3">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark container">
       <ul class="navbar-nav mr-auto">
@@ -106,7 +134,7 @@
   </footer>
 
   <script>
-    const searchagenda = async () => {
+    const search = async () => {
       // Get the search prompt from the form
       const promptagenda = document.getElementById("promptagenda").value;
       const promptcountry = document.getElementById("promptcountry").value;
@@ -116,24 +144,30 @@
       const scholarResponse = await fetch(scholarUrl);
       const scholarData = await scholarResponse.json();
       // Update the table with the search results
-      document.getElementById("result1").innerHTML = `<a href="${scholarData.items[0].link}">"${scholarData.items[0].title}"</a>`;
-      document.getElementById("result2").innerHTML = `<a href="${scholarData.items[1].link}">"${scholarData.items[1].title}"</a>`;
-      document.getElementById("result3").innerHTML = `<a href="${scholarData.items[2].link}">"${scholarData.items[2].title}"</a>`;
-      document.getElementById("result4").innerHTML = `<a href="${scholarData.items[3].link}">"${scholarData.items[3].title}"</a>`;
-      document.getElementById("result5").innerHTML = `<a href="${scholarData.items[4].link}">"${scholarData.items[4].title}"</a>`;
-      document.getElementById("result6").innerHTML = `<a href="${scholarData.items[5].link}">"${scholarData.items[5].title}"</a>`;
+      const scholarResults = scholarData.items.slice(0, 6);
+      scholarResults.forEach((result, index) => {
+        document.getElementById(`result${index + 1}`).innerHTML = `<a href="${result.link}">"${result.title}"</a>`;
+      });
 
       // Using the Google Search API to get search results, this key fetches results from associated press
       const newsUrl = `https://www.googleapis.com/customsearch/v1/siterestrict?key=AIzaSyD_2AzYp5WRBLkVxoAdPV8r9XBxrtsOe5w&cx=5443881cd7ea34ccf&q=${promptagenda}`;
       const newsResponse = await fetch(newsUrl);
       const newsData = await newsResponse.json();
       // Update the table with the search results
-      document.getElementById("article1").innerHTML = `<a href="${newsData.items[0].link}">"${newsData.items[0].title}"</a>`;
-      document.getElementById("article2").innerHTML = `<a href="${newsData.items[1].link}">"${newsData.items[1].title}"</a>`;
-      document.getElementById("article3").innerHTML = `<a href="${newsData.items[2].link}">"${newsData.items[2].title}"</a>`;
-      document.getElementById("article4").innerHTML = `<a href="${newsData.items[3].link}">"${newsData.items[3].title}"</a>`;
-      document.getElementById("article5").innerHTML = `<a href="${newsData.items[4].link}">"${newsData.items[4].title}"</a>`;
-      document.getElementById("article6").innerHTML = `<a href="${newsData.items[5].link}">"${newsData.items[5].title}"</a>`;
+      const newsResults = newsData.items.slice(0, 6);
+      newsResults.forEach((result, index) => {
+        document.getElementById(`article${index + 1}`).innerHTML = `<a href="${result.link}">"${result.title}"</a>`;
+      });
+
+      // Using the Google Search API to get search results, this key fetches results from UN
+      const unUrl = `https://www.googleapis.com/customsearch/v1/siterestrict?key=AIzaSyD_2AzYp5WRBLkVxoAdPV8r9XBxrtsOe5w&cx=1207602fe7ed442a4&q=${promptagenda}`;
+      const unResponse = await fetch(unUrl);
+      const unData = await unResponse.json();
+      // Update the table with the search results
+      const unResults = unData.items.slice(0, 6);
+      unResults.forEach((result, index) => {
+        document.getElementById(`doc${index + 1}`).innerHTML = `<a href="${result.link}">"${result.title}"</a>`;
+      });
       
       // Fetch country list from datahub.io
       const repondre = await fetch(`https://datahub.io/core/country-list/r/0.json`);
@@ -172,7 +206,7 @@
     var form = document.querySelector("form");
     form.addEventListener("submit", function(event) {
       event.preventDefault();
-      searchagenda();
+      search();
     });
   </script>
 
