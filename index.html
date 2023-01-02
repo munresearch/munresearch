@@ -112,7 +112,7 @@
       const promptcountry = document.getElementById("promptcountry").value;
 
       // Using the Google Search API to get search results, this key fetches results from core uk
-      const scholarUrl = `https://www.googleapis.com/customsearch/v1?key=AIzaSyD_2AzYp5WRBLkVxoAdPV8r9XBxrtsOe5w&cx=146c71ac6b2fe4aa7&q=${promptagenda}`;
+      const scholarUrl = `https://www.googleapis.com/customsearch/v1/siterestrict?key=AIzaSyD_2AzYp5WRBLkVxoAdPV8r9XBxrtsOe5w&cx=146c71ac6b2fe4aa7&q=${promptagenda}`;
       const scholarResponse = await fetch(scholarUrl);
       const scholarData = await scholarResponse.json();
       // Update the table with the search results
@@ -124,7 +124,7 @@
       document.getElementById("result6").innerHTML = `<a href="${scholarData.items[5].link}">"${scholarData.items[5].title}"</a>`;
 
       // Using the Google Search API to get search results, this key fetches results from associated press
-      const newsUrl = `https://www.googleapis.com/customsearch/v1?key=AIzaSyD_2AzYp5WRBLkVxoAdPV8r9XBxrtsOe5w&cx=5443881cd7ea34ccf&q=${promptagenda}`;
+      const newsUrl = `https://www.googleapis.com/customsearch/v1/siterestrict?key=AIzaSyD_2AzYp5WRBLkVxoAdPV8r9XBxrtsOe5w&cx=5443881cd7ea34ccf&q=${promptagenda}`;
       const newsResponse = await fetch(newsUrl);
       const newsData = await newsResponse.json();
       // Update the table with the search results
