@@ -18,7 +18,7 @@
     <label for="promptagenda" style="margin: 0 10px 0 0">Enter your agenda:</label><br>
     <input class="form-control mr-sm-2" aria-label="Enter your agenda" type="text" id="promptagenda" name="promptagenda"><br>
     <label for="promptcountry" style="margin: 0 10px 0 0">Enter your country:</label><br>
-    <input class="form-control mr-sm-2" aria-label="Enter your cCountry" type="text" id="promptcountry" name="promptcountry"><br>
+    <input class="form-control mr-sm-2" aria-label="Enter your Country" type="text" id="promptcountry" name="promptcountry"><br>
     <input class="btn btn-outline-success my-2 my-sm-0" type="submit" value="Submit">
   </form>
 
@@ -46,7 +46,7 @@
   </div>
   </div>
 
-  <h3 style="margin: 25px 0 5px 25px">Recent News on the Agenda</h3>
+  <h3 style="margin: 25px 0 5px 25px">Recent News on the Agenda (from Reuters)</h3>
   <div>
   <div style="margin: 0 25px 0 25px">
   <table class="table">
@@ -74,7 +74,7 @@
   </div>
   </div>
 
-  <h3 style="margin: 25px 0 5px 25px">Research Papers</h3>
+  <h3 style="margin: 25px 0 5px 25px">Research Papers (from core.ac.uk)</h3>
   <div>
   <div style="margin: 0 25px 0 25px">
   <table class="table">
@@ -156,8 +156,8 @@
         document.getElementById(`result${index + 1}`).innerHTML = `<a href="${result.link}">"${result.title}"</a>`;
       });
 
-      // Using the Google Search API to get search results, this key fetches results from associated press
-      const newsUrl = `https://www.googleapis.com/customsearch/v1/siterestrict?key=AIzaSyD_2AzYp5WRBLkVxoAdPV8r9XBxrtsOe5w&cx=5443881cd7ea34ccf&q=${promptagenda}`;
+      // Using the Google Search API to get search results, this key fetches results from reuters
+      const newsUrl = `https://www.googleapis.com/customsearch/v1/siterestrict?key=AIzaSyD_2AzYp5WRBLkVxoAdPV8r9XBxrtsOe5w&cx=134ca9e2191f14998&q=${promptagenda}`;
       const newsResponse = await fetch(newsUrl);
       const newsData = await newsResponse.json();
       // Update the table with the search results
