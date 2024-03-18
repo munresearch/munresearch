@@ -177,7 +177,7 @@
       });
       
       // Fetch country list from datahub.io
-      const repondre = await fetch(`https://datahub.io/core/country-list/r/0.json`);
+      const repondre = await fetch('https://raw.githubusercontent.com/munresearch/munresearch.github.io/master/countrylist.json');
       const dataiso = await repondre.json();
 
       // Create a map of country names to ISO 2-letter codes
