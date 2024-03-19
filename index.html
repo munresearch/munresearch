@@ -3,6 +3,8 @@
 
 <!DOCTYPE html>
 <html>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
 <head>
   <title>MUN Research</title>
 </head>
@@ -49,6 +51,8 @@
   <h3 style="margin: 25px 0 5px 25px">Recent News on the Agenda (from Reuters)</h3>
   <div>
   <div style="margin: 0 25px 0 25px">
+<div class="table_wrapper">
+
   <table class="table">
    <thead>
     <tr>
@@ -71,12 +75,16 @@
     </tr>
    </tbody>
   </table>
+</div>
+
   </div>
   </div>
 
   <h3 style="margin: 25px 0 5px 25px">Research Papers (from core.ac.uk)</h3>
   <div>
   <div style="margin: 0 25px 0 25px">
+<div class="table_wrapper">
+
   <table class="table">
    <thead>
     <tr>
@@ -99,12 +107,15 @@
     </tr>
    </tbody>
   </table>
+</div>
   </div>
   </div>
 
   <h3 style="margin: 25px 0 5px 25px">UN Documents and Articles</h3>
   <div>
   <div style="margin: 0 25px 0 25px">
+<div class="table_wrapper">
+
   <table class="table">
    <thead>
     <tr>
@@ -127,6 +138,7 @@
     </tr>
    </tbody>
   </table>
+</div>
   </div>
   </div>
   <div style="height: 100px; margin-bottom: 50px;"></div>
@@ -224,6 +236,11 @@
   </script>
 
   <style>
+    .table_wrapper{
+      display: block;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
     .content-container {
       height: calc(100vh - 80px);  /* 80px is the height of the footer */
       overflow: auto;
