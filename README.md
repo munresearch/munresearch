@@ -8,6 +8,8 @@ A web application that allows users to search for news articles, academic papers
 
 The website will retrieve the top 6 search results from different sources and display them in the table. It will also retrieve information about the country and display it in the table.
 
+This project was used as the framework for the development of the MUNify app's research bot, which can be installed from Google's Play Store [here](https://play.google.com/store/apps/details?id=com.munify.munify).
+
 ## APIs Used
 - Google Search API
 - World Bank API
