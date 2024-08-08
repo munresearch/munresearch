@@ -1,4 +1,4 @@
-# MUN Research Engine
+# MUN Research Engine (DEPRECATED)
 A web application that allows users to search for news articles, academic papers, and UN documents based on a given agenda. It also provides information on a country's capital, region, and income level based on the ISO 2-letter code of the country name entered by the user.
 
 ## Usage
